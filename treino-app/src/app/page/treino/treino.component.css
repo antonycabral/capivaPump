@@ -1,0 +1,14 @@
+button{
+    margin-right: 10px;
+}
+
+.container {
+    margin-bottom: 60px;
+    padding-bottom: 5px;
+}
+
+.body-container-treino {
+    min-height: calc(100vh - 60px);
+    padding-bottom: 60px;
+}
+

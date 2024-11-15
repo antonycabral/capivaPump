@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="/home">
+            <i class="bi bi-lightning-charge-fill"></i> CapivaPump
+        </a>
+        
+        <!-- Auth Pages Navigation -->
+        <div *ngIf="isAuthPage" class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/cadastro" routerLinkActive="active">Cadastro</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main App Navigation -->
+        <div *ngIf="!isAuthPage" class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/home" routerLinkActive="active">
+                        <i class="bi bi-house-fill"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/perfil" routerLinkActive="active">
+                        <i class="bi bi-person-fill"></i> Perfil
+                    </a>
+                </li>
+            </ul>
+            
+            <button class="btn btn-light" (click)="logout()">
+                <i class="bi bi-box-arrow-right"></i> Sair
+            </button>
+        </div>
+    </div>
+</nav>

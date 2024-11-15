@@ -1,0 +1,9 @@
+.body-container-desempenho {
+    min-height: calc(100vh - 120px);
+    padding: 20px 0 80px 0;
+    margin-top: 60px;
+}
+
+.container {
+    margin-bottom: 60px;
+}

@@ -1,0 +1,17 @@
+.body-container-perfil {
+    min-height: calc(100vh - 120px);
+    padding: 20px 0 80px 0;
+    margin-top: 60px;
+}
+
+.container {
+    margin-bottom: 60px;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.form-control:read-only {
+    background-color: #f8f9fa;
+}

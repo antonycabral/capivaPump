@@ -1,0 +1,78 @@
+<div class="container">
+    <h2>Cadastro de Usuário</h2>
+    <form (ngSubmit)="onSubmit()" #cadastroForm="ngForm">
+      <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input
+          type="text"
+          id="nome"
+          class="form-control"
+          required
+          [(ngModel)]="usuario.nome"
+          name="nome"
+        />
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          required
+          [(ngModel)]="usuario.email"
+          name="email"
+        />
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Senha:</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          required
+          [(ngModel)]="usuario.password"
+          name="password"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="peso">Peso (kg):</label>
+        <input
+          type="number"
+          id="peso"
+          class="form-control"
+          required
+          [(ngModel)]="usuario.peso"
+          name="peso"
+        />
+      </div>
+      
+      <div class="form-group">
+        <label for="idade">idade:</label>
+        <input
+          type="number"
+          id="idade"
+          class="form-control"
+          required
+          [(ngModel)]="usuario.idade"
+          name="idade"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="altura">Altura (m):</label>
+        <input
+          type="number"
+          id="altura"
+          class="form-control"
+          required
+          [(ngModel)]="usuario.altura"
+          name="altura"
+        />
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>

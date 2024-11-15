@@ -1,0 +1,35 @@
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h2>Novo Exercício</h2>
+        </div>
+        <div class="card-body">
+            <form (ngSubmit)="salvarExercicio()">
+                <div class="mb-3">
+                    <label class="form-label">Nome</label>
+                    <input type="text" class="form-control" [(ngModel)]="exercicio.nome" name="nome">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Descrição</label>
+                    <textarea class="form-control" [(ngModel)]="exercicio.descricao" name="descricao"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Séries</label>
+                    <input type="number" class="form-control" [(ngModel)]="exercicio.series" name="series">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Repetições</label>
+                    <input type="number" class="form-control" [(ngModel)]="exercicio.repeticoes" name="repeticoes">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Carga (kg)</label>
+                    <input type="number" class="form-control" [(ngModel)]="exercicio.carga" name="carga">
+                </div>
+                <div class="d-flex justify-content-end gap-2">
+                    <button type="button" class="btn btn-secondary" (click)="voltar()">Voltar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

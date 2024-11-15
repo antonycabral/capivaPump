@@ -1,0 +1,78 @@
+<div class="body-container-perfil">
+  <div class="container mt-5">
+    <div class="card shadow">
+      <div class="card-header bg-primary text-white">
+        <h2>Perfil do Usuário</h2>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            <form #perfilForm="ngForm">
+              <div class="mb-3">
+                <label class="form-label">Nome</label>
+                <input type="text" class="form-control" [(ngModel)]="usuario.nome" name="nome" [readonly]="!modoEdicao">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" [(ngModel)]="usuario.email" name="email" readonly>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Idade</label>
+                <input type="number" class="form-control" [(ngModel)]="usuario.idade" name="idade" [readonly]="!modoEdicao">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Peso (kg)</label>
+                <input type="number" class="form-control" [(ngModel)]="usuario.peso" name="peso" [readonly]="!modoEdicao">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Altura (cm)</label>
+                <input type="number" class="form-control" [(ngModel)]="usuario.altura" name="altura" [readonly]="!modoEdicao">
+              </div>
+
+              <div class="mb-3" *ngIf="modoEdicao">
+                <button type="button" class="btn btn-link" (click)="toggleAlteracaoSenha()">
+                  {{ mostrarAlteracaoSenha ? 'Cancelar alteração de senha' : 'Alterar senha' }}
+                </button>
+                
+                <div *ngIf="mostrarAlteracaoSenha" class="mt-2">
+                  <div class="mb-3">
+                    <label class="form-label">Nova Senha</label>
+                    <input type="password" class="form-control" [(ngModel)]="novaSenha" name="novaSenha">
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label class="form-label">Confirmar Nova Senha</label>
+                    <input type="password" class="form-control" [(ngModel)]="confirmarSenha" name="confirmarSenha">
+                  </div>
+
+                  <div *ngIf="senhasNaoCoincidem" class="alert alert-danger">
+                    As senhas não coincidem!
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end gap-2">
+                <button type="button" class="btn btn-secondary" (click)="voltar()">
+                  <i class="bi bi-arrow-left"></i> Voltar
+                </button>
+                <button type="button" *ngIf="!modoEdicao" class="btn btn-primary" (click)="toggleEdicao()">
+                  Editar Perfil
+                </button>
+                <button type="button" *ngIf="modoEdicao" class="btn btn-success" (click)="salvarAlteracoes()">
+                  Salvar Alterações
+                </button>
+                <button type="button" *ngIf="modoEdicao" class="btn btn-secondary" (click)="toggleEdicao()">
+                  Cancelar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

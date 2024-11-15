@@ -1,0 +1,11 @@
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-link.active {
+    font-weight: 600;
+}
+
+.btn-light:hover {
+    transform: translateY(-1px);
+}

@@ -1,0 +1,60 @@
+<div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center bg-light">
+    <div class="card shadow-lg" style="min-width: 320px; max-width: 400px;">
+        <div class="card-header bg-primary text-white text-center py-3">
+            <h2 class="mb-0">
+                <i class="bi bi-lightning-charge-fill me-2"></i>
+                CapivaPump
+            </h2>
+        </div>
+        
+        <div class="card-body p-4">
+            <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="bi bi-envelope"></i>
+                        </span>
+                        <input
+                            type="email"
+                            id="email"
+                            [(ngModel)]="credentials.email"
+                            name="email"
+                            class="form-control"
+                            required
+                            placeholder="Seu email">
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="password" class="form-label">Senha</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="bi bi-lock"></i>
+                        </span>
+                        <input
+                            type="password"
+                            id="password"
+                            [(ngModel)]="credentials.password"
+                            name="password"
+                            class="form-control"
+                            required
+                            placeholder="Sua senha">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 mb-3">
+                    <i class="bi bi-box-arrow-in-right me-2"></i>
+                    Entrar
+                </button>
+            </form>
+
+            <div class="text-center">
+                <p class="mb-0">Ainda não possui conta?</p>
+                <button (click)="navigateToCadastro()" class="btn btn-link">
+                    Registre-se aqui!
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

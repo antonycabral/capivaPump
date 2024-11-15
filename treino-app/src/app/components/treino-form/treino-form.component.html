@@ -1,0 +1,40 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow">
+          <div class="card-header bg-primary text-white">
+            <h2 class="h4 mb-0">{{ isEditing ? 'Editar Treino' : 'Novo Treino' }}</h2>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="treinoForm" (ngSubmit)="onSubmit()">
+              <div class="mb-3">
+                <label for="nome" class="form-label">Nome do Treino</label>
+                <input type="text" class="form-control" id="nome" formControlName="nome">
+              </div>
+  
+              <div class="mb-3">
+                <label for="descricao" class="form-label">Descrição</label>
+                <textarea class="form-control" id="descricao" rows="3" formControlName="descricao"></textarea>
+              </div>
+  
+              <div class="mb-3">
+                <label for="nivel" class="form-label">Nível</label>
+                <select class="form-control" id="nivel" formControlName="nivel">
+                  <option value="Iniciante">Iniciante</option>
+                  <option value="Intermediário">Intermediário</option>
+                  <option value="Avançado">Avançado</option>
+                </select>
+              </div>
+  
+              <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-secondary" routerLink="/home">Cancelar</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!treinoForm.valid">
+                  {{ isEditing ? 'Atualizar' : 'Criar' }}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

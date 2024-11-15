@@ -1,0 +1,151 @@
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <button class="btn btn-light me-3" (click)="voltar()">
+                    <i class="bi bi-arrow-left"></i> Voltar
+                </button>
+                <h2>{{treino.nome}}</h2>
+                <div class="timer-display" *ngIf="currentExercise">
+                    <h3 class="mb-0">
+                        <i class="bi bi-stopwatch"></i>
+                        {{formatTime(elapsedTime)}}
+                    </h3>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-body text-center">
+            <div *ngIf="!currentExercise" class="exercise-selection mt-4">
+                <h4>Selecione o exercício para iniciar:</h4>
+                <div class="row justify-content-center mt-3">
+                    <div *ngFor="let exercise of remainingExercises" class="col-md-4 mb-3">
+                        <div class="card exercise-card hover-effect" (click)="selectExercise(exercise)">
+                            <div class="card-body">
+                                <h5>{{exercise.nome}}</h5>
+                                <p class="mb-0">{{exercise.series}} séries x {{exercise.repeticoes}} repetições</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="currentExercise" class="exercise-display">
+                <h3 class="mb-4">{{currentExercise.nome}}</h3>
+                <p class="lead">{{currentExercise.descricao}}</p>
+                
+                <div class="stats mt-4">
+                    <div class="row justify-content-center">
+                        <div class="col-md-4">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h4>Séries</h4>
+                                    <p class="display-4">{{currentExercise.series}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h4>Repetições</h4>
+                                    <p class="display-4">{{currentExercise.repeticoes}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h4>Carga</h4>
+                                    <p class="display-4">{{currentExercise.carga}}kg</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="current-series mt-4">
+                    <h3>Série atual: {{currentSeries}}/{{currentExercise.series}}</h3>
+                </div>
+        
+                <div *ngIf="isResting" class="rest-timer mt-4">
+                    <div class="alert alert-info">
+                        <h4>Tempo de descanso</h4>
+                        <p class="display-4">{{restTimeLeft}}s</p>
+                    </div>
+                
+                    <div *ngIf="showFeedbackForm" class="feedback-form mt-4">
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">Como foi a série?</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Repetições executadas:</label>
+                                    <input type="number" class="form-control" [(ngModel)]="seriesFeedback.repeticoesExecutadas">
+                                </div>
+                                
+                                <div class="form-group mt-3">
+                                    <label>Como estava a carga?</label>
+                                    <select class="form-control" [(ngModel)]="seriesFeedback.cargaFeedback">
+                                        <option value="leve">Leve</option>
+                                        <option value="adequada">Adequada</option>
+                                        <option value="pesada">Pesada</option>
+                                    </select>
+                                </div>
+                    
+                                <div class="mt-4">
+                                    <button class="btn btn-primary" (click)="processarFeedback()">
+                                        Confirmar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div *ngIf="ajusteSugerido" class="alert"
+                             [ngClass]="{'alert-success': !ajusteSugerido.includes('mantenha'),
+                                       'alert-info': ajusteSugerido.includes('mantenha')}"
+                             role="alert">
+                            <h5 class="alert-heading">Sugestão de Ajuste</h5>
+                            <p>{{ ajusteSugerido }}</p>
+                            <div class="mt-3" *ngIf="!ajusteSugerido.includes('mantenha')">
+                                <button class="btn btn-success me-2" (click)="aceitarAjuste()">
+                                    Aceitar Ajuste
+                                </button>
+                                <button class="btn btn-secondary" (click)="recusarAjuste()">
+                                    Manter Atual
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <button *ngIf="!isResting" class="btn btn-lg btn-primary me-2" (click)="completeSeries()">
+                        Completar Série
+                    </button>
+                    <button class="btn btn-lg btn-secondary" (click)="finishTraining()">
+                        Finalizar Treino
+                    </button>
+                </div>
+
+                <div *ngIf="seriesCompleted" class="exercise-selection mt-4">
+                    <div class="alert alert-success mb-4">
+                        <h4><i class="bi bi-check-circle"></i> Exercício Completo!</h4>
+                        <p>Escolha seu próximo exercício:</p>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div *ngFor="let exercise of remainingExercises" class="col-md-4 mb-3">
+                            <div class="card exercise-card hover-effect" (click)="selectExercise(exercise)">
+                                <div class="card-body">
+                                    <h5>{{exercise.nome}}</h5>
+                                    <p class="mb-0">{{exercise.series}} séries x {{exercise.repeticoes}} repetições</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

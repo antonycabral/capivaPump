@@ -1,0 +1,73 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="text-center mb-4">
+                <h1 class="display-4">Bem-vindo, {{usuario.nome}}!</h1>
+            </div>
+
+            <div class="card shadow mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="h4 mb-0">Seus Dados</h2>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <p class="mb-2"><strong>Nome:</strong> {{usuario.nome}}</p>
+                        <p><strong>Idade:</strong> {{usuario.idade}}</p>
+                        <p><strong>Peso</strong> {{usuario.peso}}</p>
+                        <p><strong>Altura:</strong> {{usuario.altura}}</p>
+
+                        <div class="mt-4 p-3 bg-light rounded">
+                            <h3 class="h5">Seu IMC</h3>
+                            <p class="h2 text-primary">{{calcularIMC() | number:'1.1-1'}}</p>
+                            <p class="text-muted">{{getClassificacaoIMC()}}</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" (click)="navegarParaPerfil()">
+                        Editar Perfil
+                    </button>
+
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="card shadow">
+                                <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                                    <h2 class="h4 mb-0">Meus Treinos</h2>
+                                    <button class="btn btn-light btn-sm" (click)="adicionarTreino()">
+                                        Novo Treino
+                                    </button>
+                                </div>
+                                <div class="card-body">
+                                    <div *ngIf="!usuario.treinos || usuario.treinos.length === 0" class="text-center p-4">
+                                        <p class="text-muted">Você ainda não possui treinos cadastrados</p>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div *ngFor="let treino of usuario.treinos" class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body">
+                                                    <h3 class="h5">{{treino.nome}}</h3>
+                                                    <p class="mb-2">{{treino.descricao}}</p>
+                                                    <span class="badge bg-info">{{treino.nivel}}</span>
+                                                </div>
+                                                <div class="card-footer bg-white">
+                                                    <button class="btn btn-sm btn-primary me-2" (click)="selecionarTreino(treino.id)">
+                                                        Selecionar
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-primary me-2" (click)="editarTreino(treino)">
+                                                        Editar
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger" (click)="removerTreino(treino.id)">
+                                                        Remover
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

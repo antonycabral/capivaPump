@@ -1,0 +1,28 @@
+<div class="performance-stats">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="stat-card">
+          <h4>Treinos Completos</h4>
+          <p class="stat-number">{{estatisticas.treinosCompletos}}</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-card">
+          <h4>Tempo Total de Treino</h4>
+          <p class="stat-number">{{estatisticas.tempoTotalTreino}} min</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-card">
+          <h4>Média de Exercícios</h4>
+          <p class="stat-number">{{estatisticas.mediaExerciciosPorTreino}}</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-card">
+          <h4>Último Treino</h4>
+          <p class="stat-date">{{estatisticas.ultimoTreino | date:'dd/MM/yyyy'}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
