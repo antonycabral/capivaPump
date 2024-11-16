@@ -5,12 +5,11 @@ import { AuthService } from '../../service/auth.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { TreinoService } from '../../service/treino.service';
-import { DesempenhoComponent } from "../../components/desempenho/desempenho.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, RouterModule, DesempenhoComponent],
+  imports: [CommonModule, HttpClientModule, RouterModule],
   providers: [UserService,AuthService,TreinoService],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'

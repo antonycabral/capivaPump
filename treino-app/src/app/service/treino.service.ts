@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class TreinoService {
-  private apiUrl = `http://${environment.apiUrl}/api/treinos`;
+  private apiUrl = `https://${environment.apiUrl}/api/treinos`;
 
   constructor(private http: HttpClient) { }
 

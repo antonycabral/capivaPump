@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class ExercicioHistoricoService {
-  private apiUrl = `http://${environment.apiUrl}/api/exercicio-historico`;
+  private apiUrl = `https://${environment.apiUrl}/api/exercicio-historico`;
 
   constructor(private http: HttpClient) { }
 

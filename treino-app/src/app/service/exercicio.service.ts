@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class ExercicioService {
-  private apiUrl = `http://${environment.apiUrl}/api/exercicios`;
+  private apiUrl = `https://${environment.apiUrl}/api/exercicios`;
 
   private getHeaders() {
     const token = localStorage.getItem('token');
