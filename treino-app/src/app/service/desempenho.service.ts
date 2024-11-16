@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { DesempenhoData } from '../../Models/DesenpenhoData';
 import { TreinoRegistro } from '../../Models/TreinoRegistro';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DesempenhoService {
 
-  private apiUrl = 'http://localhost:8080/api/desempenho';
+  private apiUrl = `https://${environment.apiUrl}/api/desempenho`;
   private desempenhoSubject = new BehaviorSubject<DesempenhoData | null>(null);
 
   constructor(private http: HttpClient) { }

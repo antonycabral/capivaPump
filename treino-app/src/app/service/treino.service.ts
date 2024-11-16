@@ -1,12 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TreinoService {
-  private apiUrl = 'http://localhost:8080/api/treinos';
+  private apiUrl = `http://${environment.apiUrl}/api/treinos`;
 
   constructor(private http: HttpClient) { }
 

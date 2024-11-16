@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://treino-backend-production.up.railway.app'
+    apiUrl: 'treino-backend-production.up.railway.app'
 };
