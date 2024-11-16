@@ -1,15 +1,9 @@
 {
-  "version": 2,
   "builds": [
     {
-      "src": "dist/treino-app/*",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/dist/treino-app/index.html"
+      "src": "treino-app/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist/treino-app" }
     }
   ]
 }
