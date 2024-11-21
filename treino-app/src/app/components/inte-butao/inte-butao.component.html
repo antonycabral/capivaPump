@@ -1,0 +1,27 @@
+<button class="btn btn-primary rounded-circle shadow position-fixed top-50 end-0 m-4 d-flex align-items-center justify-content-center"
+        style="width: 50px; height: 50px;"
+        (click)="toggleEditMode()">
+    <i class="bi bi-pencil-square fs-2"></i>
+</button>
+  
+  <div class="modal fade show" *ngIf="isEditing" tabindex="-1" style="display: block;">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ajustar Carga</h5>
+          <button type="button" class="btn-close" (click)="cancelarEdicao()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Nova Carga (kg):</label>
+            <input type="number" [(ngModel)]="novaCarga" class="form-control">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="cancelarEdicao()">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="salvarAjuste()">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -63,6 +63,11 @@
                     </div>
                 </div>
 
+                <app-inte-butao
+                [cargaAtual]="currentExercise.carga"
+                (cargaAlterada)="atualizarCarga($event)">
+                </app-inte-butao>
+
                 <div class="current-series mt-4">
                     <h3>Série atual: {{currentSeries}}/{{currentExercise.series}}</h3>
                 </div>

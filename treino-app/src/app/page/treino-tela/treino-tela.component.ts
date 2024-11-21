@@ -9,13 +9,14 @@ import { SeriesFeedback } from '../../../Models/SeriesFeedback';
 import { AjusteExercicio } from '../../../Models/AjusteExercicio';
 import { ExercicioService } from '../../service/exercicio.service';
 import { TreinoRegistro } from '../../../Models/TreinoRegistro';
+import { InteButaoComponent } from '../../components/inte-butao/inte-butao.component';
 
 
 
 @Component({
   selector: 'app-treino-tela',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, InteButaoComponent],
   templateUrl: './treino-tela.component.html',
   styleUrl: './treino-tela.component.css'
 })
@@ -270,5 +271,46 @@ processarFeedback() {
     this.stopRestTimer();
     this.router.navigate(['/treino', this.treino.id]);
 }
+
+atualizarCarga(novaCarga: number) {
+  if (this.currentExercise) {
+    const historicoData = {
+      cargaAntiga: this.currentExercise.carga,
+      cargaNova: novaCarga,
+      repeticoesAntigas: this.currentExercise.repeticoes,
+      repeticoesNovas: this.currentExercise.repeticoes,
+      dataAlteracao: new Date()
+    };
+
+    // Update the exercise in the backend
+    this.exercicioService.atualizarExercicio(this.currentExercise.id, {
+      ...this.currentExercise,
+      carga: novaCarga
+    }).subscribe({
+      next: (exercicioAtualizado) => {
+        // Update local exercise data
+        this.currentExercise.carga = novaCarga;
+        
+        // Register the change in exercise history
+        this.exercicioHistoricoService.registrarAlteracao(
+          this.currentExercise.id,
+          historicoData
+        ).subscribe({
+          next: () => {
+            console.log('Histórico de alteração registrado com sucesso');
+          },
+          error: (error) => {
+            console.error('Erro ao registrar histórico:', error);
+          }
+        });
+      },
+      error: (error) => {
+        console.error('Erro ao atualizar exercício:', error);
+      }
+    });
+  }
+}
+
+
 
 }

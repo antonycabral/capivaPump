@@ -11,18 +11,22 @@ import { NavigationEnd, Router, RouterModule } from '@angular/router';
 })
 export class NavBarComponent {
   isAuthPage: boolean = false;
+  isMenuCollapsed = true;
 
   constructor(private router: Router) {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.isAuthPage = event.url === '/login' || event.url === '/register';
-      }
-    })
+    this.router.events.subscribe(() => {
+      this.isAuthPage = ['/login', '/cadastro'].includes(this.router.url);
+    });
+  }
+
+  toggleMenu() {
+    this.isMenuCollapsed = !this.isMenuCollapsed;
   }
 
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
     this.router.navigate(['/login']);
+    this.isMenuCollapsed = true;
   }
 }

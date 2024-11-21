@@ -28,4 +28,5 @@ export class ExercicioHistoricoService {
   getHistorico(exercicioId: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/exercicio/${exercicioId}`, this.getHeaders());
   }
+
 }
